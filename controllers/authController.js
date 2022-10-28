@@ -3,9 +3,9 @@ const { User } = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-// Register
-module.exports.register = async (req, res) => {
-  // Our register logic starts here
+// signup
+module.exports.signup = async (req, res) => {
+  // Our signup logic starts here
   try {
     // Get user input
     const {
@@ -17,7 +17,7 @@ module.exports.register = async (req, res) => {
 
     // Validate user input
     if (!(email && password && name)) {
-      res.status(400).send('All input is required');
+      return res.status(400).send('All input is required');
     }
 
     // check if user already exist
@@ -25,7 +25,7 @@ module.exports.register = async (req, res) => {
     const oldUser = await User.findOne({ email });
 
     if (oldUser) {
-      res.status(409).send('User Already Exist. Please Login');
+      return res.status(409).send('User Already Exist. Please Login');
     }
 
     //Encrypt user password
@@ -34,6 +34,7 @@ module.exports.register = async (req, res) => {
     console.log('encryptedPassword', encryptedPassword);
 
     // Create user in our database
+    //try cath
     const user = await User.create({
       name,
       email: email.toLowerCase(), // sanitize: convert email to lowercase
@@ -49,11 +50,11 @@ module.exports.register = async (req, res) => {
     user.token = token;
 
     // return new user
-    res.status(201).json(user);
+    return res.status(201).json(user);
   } catch (err) {
     console.log(err);
   }
-  // Our register logic ends here
+  // Our signup logic ends here
 };
 
 // Login
@@ -64,7 +65,7 @@ module.exports.login = async (req, res) => {
 
     // Validate user input
     if (!(email && password)) {
-      res.status(400).send('All input is required');
+      return res.status(400).send('All input is required');
     }
     // Validate if user exist in our database
     const user = await User.findOne({ email });
@@ -79,9 +80,9 @@ module.exports.login = async (req, res) => {
       user.token = token;
 
       // user
-      res.status(200).json(user);
+      return res.status(200).json(user);
     }
-    res.status(400).send('Invalid Credentials');
+    return res.status(400).send('Invalid Credentials');
   } catch (err) {
     console.log(err);
   }

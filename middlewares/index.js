@@ -2,7 +2,7 @@ const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
 const corsOption = {
-  origin: '*',
+  origin: ['http://localhost:3000'],
   methods: 'GET,PUT,POST,DELETE',
   credentials: true,
   exposedHeaders: ['x-auth-token'],
@@ -14,6 +14,5 @@ module.exports = (app) => {
   app.use(express.json({ extended: false }));
   app.use(formData.parse());
   app.use(helmet());
-  app.use(cors());
-  //   app.use(cors(corsOption));
+  app.use(cors(corsOption));
 };

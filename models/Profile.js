@@ -2,11 +2,11 @@ const { Schema, model, mongoose } = require('mongoose');
 
 const profileSchema = new Schema(
   {
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-      required: true,
-    },
+    // user: {
+    //   type: mongoose.Schema.Types.ObjectId,
+    //   ref: 'User',
+    //   required: true,
+    // },
     toDos: [
       {
         type: mongoose.Schema.Types.ObjectId,
