@@ -1,6 +1,6 @@
 const { Router } = require('express');
-const todoController = require('../controllers/toDo');
+const todoController = require('../controllers/todoController');
 const router = Router();
 
-router.get('/', todoController.getAll);
+router.get('/getAll', todoController.getAll);
 module.exports = router;

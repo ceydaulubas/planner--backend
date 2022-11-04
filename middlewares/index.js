@@ -2,7 +2,7 @@ const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
 const corsOption = {
-  origin: ['http://localhost:3000'],
+  origin: ['http://localhost:3002'],
   methods: 'GET,PUT,POST,DELETE',
   credentials: true,
   exposedHeaders: ['x-auth-token'],

@@ -13,10 +13,10 @@ app.get('/', (_, res) => res.json({ success: true, message: 'Sign up- Log in ser
 
 //Route imports
 const authRoutes = require('./routes/authRoutes');
-// const todoRoutes = require('./routes/todoRoutes');
+const todoRoutes = require('./routes/todoRoutes');
 
 // Routes
-app.use('/api', authRoutes);
-// app.use('/todo', todoRoutes);
+app.use('/auth', authRoutes);
+app.use('/todo', todoRoutes);
 
 module.exports = app;
