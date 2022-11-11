@@ -15,9 +15,9 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    // token: {
-    //   type: String,
-    // },
+    token: {
+      type: String,
+    },
     todos: [
       {
         type: mongoose.Schema.Types.ObjectId,
