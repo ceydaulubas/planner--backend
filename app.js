@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 require('dotenv').config();
+const verifyToken = require('../backend/');
 
 //DB connection
 const dbConnect = require('./config/dbConfig').connectDatabase();
